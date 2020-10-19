@@ -5,6 +5,8 @@ function App() {
   return (
     <div className="App">
       <h1>Potluck Planner, Track Team #8 </h1>
+      <br></br>
+
       <h2>David Chang, Unit 2</h2>
       <br></br>
       <h2>Elijah Elliot, Unit 2</h2>
