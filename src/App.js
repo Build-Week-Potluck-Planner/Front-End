@@ -7,6 +7,7 @@ import { OrganizerCard } from "./components/OrganizerCard";
 
 function App() {
   return (
+    <div>
       <h1>Potluck Planner, Track Team #8 </h1>
       <br></br>
 
@@ -18,7 +19,7 @@ function App() {
       <br></br>
       <h2>Tzong-Lian Tsay, Unit 3</h2>
       <br></br>
-    
+
       <Router>
         <div className="App">
           <header className="App-header">
