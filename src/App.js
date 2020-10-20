@@ -1,11 +1,13 @@
 import React from "react";
 import "./App.css";
+import Organizer from "./components/Organizer"
 import Private from "./utils/PrivateRoute";
 import { Route, Switch, Link, useHistory } from "react-router-dom";
 import Authorization from "./utils/AxiosWithAuth";
 import Home from "./components/Home";
 
 import DummyLogin from "./components/DummyLogin";
+
 
 function App() {
   const { push } = useHistory();
@@ -42,7 +44,9 @@ function App() {
       <br></br>
       <h2>Tzong-Lian Tsay, Unit 3</h2>
       <br></br>
-    </div>
+
+      <Organizer />  
+     </div>
   );
 }
 
