@@ -1,5 +1,6 @@
 import React from "react";
 import "./App.css";
+import Organizer from "./components/Organizer"
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
       <br></br>
       <h2>Tzong-Lian Tsay, Unit 3</h2>
       <br></br>
+      <Organizer />
     </div>
   );
 }
