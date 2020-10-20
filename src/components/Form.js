@@ -22,44 +22,14 @@ function Form(props){
         <form className='form-container' onSubmit={onSubmit}>
             <div className='form inputs'>
                 <label>
-                    Name of Event
+                    Name of Potluck
                     <input 
-                        value={values.name}
+                        value={values.event_name}
                         onChange={onChange}
-                        name='name'
+                        name='event_name'
                         type='text'
-                        placeholder='Friendsgiving potluck'
+                        placeholder='Thanksgiving Potluck'
                     />
-                </label>
-                <label>
-                    Organizer
-                    <input 
-                        value={values.organizer}
-                        onChange={onChange}
-                        name='organizer'
-                        type='text'
-                        placeholder='John Doe'
-                    /> 
-                </label>
-                <label>
-                    Email
-                    <input 
-                        value={values.email}
-                        onChange={onChange}
-                        name='email'
-                        type='email'
-                        placeholder='Johndoe123@abc.com'
-                    /> 
-                </label>
-                <label>
-                    Guests
-                    <input 
-                        value={values.guests}
-                        onChange={onChange}
-                        name='guests'
-                        type='text'
-                        placeholder='Jane Doe'
-                    /> 
                 </label>
                 <label>
                     Date
@@ -79,6 +49,67 @@ function Form(props){
                         type='text'
                     /> 
                 </label>
+                <label>
+                    Description
+                    <input 
+                        value={values.description}
+                        onChange={onChange}
+                        name='description'
+                        type='text'
+                        placeholder='20th Annual Friendsgiving Potluck hosted by John Doe'
+                    /> 
+                </label>
+                <label>
+                    Address
+                    <input 
+                        value={values.address}
+                        onChange={onChange}
+                        name='address'
+                        type='text'
+                        placeholder='123 Sesame Street'
+                    /> 
+                </label>
+                <label>
+                    City
+                    <input 
+                        value={values.city}
+                        onChange={onChange}
+                        name='city'
+                        type='text'
+                        placeholder='Manhattan'
+                    /> 
+                </label>
+                <label>
+                    State
+                    <input 
+                        value={values.state}
+                        onChange={onChange}
+                        name='state'
+                        type='text'
+                        placeholder='New York'
+                    /> 
+                </label>
+                {/* <label>
+                    Email
+                    <input 
+                        value={values.email}
+                        onChange={onChange}
+                        name='email'
+                        type='email'
+                        placeholder='Johndoe123@abc.com'
+                    /> 
+                </label>
+                <label>
+                    Guests
+                    <input 
+                        value={values.guests}
+                        onChange={onChange}
+                        name='guests'
+                        type='text'
+                        placeholder='Jane Doe'
+                    /> 
+                </label>
+                
                 <label>
                     Location
                     <input 
@@ -124,7 +155,7 @@ function Form(props){
                         onChange={onChange}
                     /> 
                     Utensils
-                </label>
+                </label> */}
                 <br></br>
                 {/* <DatePicker selected={startDate} onChange={date => setStartDate(date)} />
                 <br></br> */}
