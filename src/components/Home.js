@@ -21,7 +21,7 @@ function Home() {
 
   // Initialize with current list of potlucks
   const getPotluck = () => {
-    axiosWithAuth()
+    axios
       .get("http://backend-bw.herokuapp.com/potlucks")
       .then((res) => setPotlucks(res.data))
       .catch((err) => console.log(err.response));
