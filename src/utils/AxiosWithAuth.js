@@ -1,14 +1,12 @@
 import axios from "axios";
 
-const Authorization = () => {
+export const authorization = () => {
   const token = localStorage.getItem("token");
 
   return axios.create({
     baseURL: "https://potluck-planner-bw.herokuapp.com",
     headers: {
-      token: token,
+      authorization: token,
     },
   });
 };
-
-export default Authorization;

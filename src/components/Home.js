@@ -1,18 +1,20 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Route } from "react-router-dom";
+import { EventCard } from "./EventCard";
+import { UserCard } from "./UserCard";
+import { authorization } from "../utils/AxiosWithAuth";
 
 // Component Pages
 // import createPotluck
 // import organizerCard
 // import guestCard
-import { UserContext } from "../components/UserContext";
+import { UserContext } from "../contexts/UserContext";
 
 function Home() {
   // State variables
   const [editing, setEditing] = useState(false);
   const [potluckToEdit, setPotluckToEdit] = useState({});
   const [potlucks, setPotlucks] = useState([]);
-
   // Helper Functions
   const editPotluck = (potluck) => {
     setEditing(true);
@@ -21,9 +23,12 @@ function Home() {
 
   // Initialize with current list of potlucks
   const getPotluck = () => {
-    axios
-      .get("http://backend-bw.herokuapp.com/potlucks")
-      .then((res) => setPotlucks(res.data))
+    authorization()
+      .get("/events")
+      .then((res) => {
+        setPotlucks(res.data);
+        console.log(res.data);
+      })
       .catch((err) => console.log(err.response));
   };
 
@@ -49,12 +54,49 @@ function Home() {
   // };
 
   // Render List of Potlucks
+  // const PotluckList = () => {
+  //   const [list, setList] = useState([]);
 
+  //   useEffect(() => {
+  //     Authorization()
+  //       .get("/events")
+  //       .then((response) => {
+  //         console.log(response.data);
+  //         setList(response.data);
+  //       })
+  //       .catch((error) => console.log(error));
+  //   }, []);
+  //   return list;
+  // };
   return (
     <div className="Home">
       <h1>My Potlucks! </h1>
+      <section>
+        <div>{/* CreatePotlucks */}</div>
+      </section>
+      <section>
+        <div>
+          {/* 
+        Current list of potlucks
+        Get /ev 
+        */}
+          {potlucks.map((potluck) => (
+            <div>
+              <EventCard props={potluck} key={potluck.event_id} />
+            </div>
+          ))}
+
+          {/* <PotluckList /> */}
+        </div>
+      </section>
+      <section>
+        <div>{/* Invited to */}</div>
+      </section>
+
       <nav>{/* <logout></logout> */}</nav>
-      <UserContext.Provider value={{ user }}></UserContext.Provider>
+      {/* <UserContext.Provider></UserContext.Provider> */}
     </div>
   );
 }
+
+export default Home;

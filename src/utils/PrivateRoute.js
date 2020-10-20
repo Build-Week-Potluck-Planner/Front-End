@@ -1,16 +1,15 @@
 import React from "react";
 import { Route, Redirect } from "react-router-dom";
-import OrganizerCard from "../components/OrganizerCard";
 
-const Private = ({ component: OrganizerCard, ...props }) => {
+const Private = ({ home: Home, ...rest }) => {
   return (
     <Route
-      {...props}
-      render={() => {
+      {...rest}
+      render={(props) => {
         if (localStorage.getItem("token")) {
-          return <OrganizerCard />;
+          return <Home {...props} />;
         } else {
-          return <Redirect to="/" />;
+          return <Redirect to="/Home" />;
         }
       }}
     />
