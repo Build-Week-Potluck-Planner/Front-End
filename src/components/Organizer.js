@@ -11,29 +11,37 @@ import 'react-datepicker/dist/react-datepicker.css';
 const initialEvents = []
 const initialDisabled = true
 const initialFormValues = {
-  name: '',
-  email: '',
-  organizer: '',
-  guests: '',
+  event_name: '',
   date: '',
   time: '',
-  location: '',
+  description: '',
+  address: '',
+  city: '',
+  state: '',
+  // email: '',
+  // organizer: '',
+  // guests: '',
+  // location: '',
   //item categories for now
-  drinks: '',
-  desserts: '',
-  entrees: '',
-  utensils: '',
+  // drinks: '',
+  // desserts: '',
+  // entrees: '',
+  // utensils: '',
 }
 
 const initialFormErrors = {
-  name: '',
-  email: '',
-  organizer: '',
-  guests: '',
+  event_name: '',
   date: '',
   time: '',
-  location: '',
-  items: '',
+  description: '',
+  address: '',
+  city: '',
+  state: '',
+  // email: '',
+  // organizer: '',
+  // guests: '',
+  // location: '',
+  // items: '',
 }
 
 function Organizer() {
@@ -44,7 +52,7 @@ function Organizer() {
   const [startDate, setStartDate] = useState(new Date())
 
   const postNewEvent = (newEvent) => {
-    axios.post('', newEvent)
+    axios.post('https://potluck-planner-bw.herokuapp.com/events/', newEvent)
     .then(res => {
       console.log(res.data)
       setEvents([...events, res.data])
@@ -79,14 +87,18 @@ function Organizer() {
 
   const formSubmit = () => {
     const newEvent = {
-      name: formValues.name.trim(),
-      email: formValues.email.trim(),
-      organizer: formValues.organizer.trim(),
-      guests: formValues.guests.trim(),
+      event_name: formValues.event_name.trim(),
       date: formValues.date.trim(),
       time: formValues.time.trim(),
-      location: formValues.location.trim(),
-      items: ['drinks', 'desserts', 'entrees', 'utensils', ].filter((item) => formValues[item]),
+      description: formValues.description.trim(),
+      address: formValues.address.trim(),
+      city: formValues.city.trim(),
+      state: formValues.state.trim(),
+      // email: formValues.email.trim(),
+      // organizer: formValues.organizer.trim(),
+      // guests: formValues.guests.trim(),
+      // location: formValues.location.trim(),
+      // items: ['drinks', 'desserts', 'entrees', 'utensils', ].filter((item) => formValues[item]),
     }
     postNewEvent(newEvent)
   }
@@ -121,18 +133,22 @@ function Organizer() {
           <h2>Home Page</h2>
           {events.map((event) => {
             return <Event 
-              key={event.id}
-              name={event.name}
-              email={event.email}
-              organizer={event.organizer}
-              guests={event.guests}
+              // key={event.id} - no longer needed per Tzong
+              event_name={event.event_name}
               date={event.date}
               time={event.time}
-              location={event.location}
-              drinks={event.drinks}
-              desserts={event.desserts}
-              entrees={event.entrees}
-              utensils={event.utensils}
+              description={event.description}
+              address={event.address}
+              city={event.city}
+              state={event.state}
+              // email={event.email}
+              // organizer={event.organizer}
+              // guests={event.guests}
+              // location={event.location}
+              // drinks={event.drinks}
+              // desserts={event.desserts}
+              // entrees={event.entrees}
+              // utensils={event.utensils}
             />
           })}
         </Route>
