@@ -7,7 +7,7 @@ export default function logIn (props) {
 
     const login = () => {
         const [loginState, setLoginState] = useState({
-            email: '',
+            username: '',
             password: '',
         });
 
@@ -24,14 +24,14 @@ export default function logIn (props) {
     return (
         <form onSubmit={onSubmit}>
             <div className='logIn inputs'>
-                <label>Email
+                <label>Username
                     <input 
-                    id='email' 
-                    type='email' 
-                    name='email' 
+                    id='username' 
+                    type='text' 
+                    name='username' 
                     onChange={onChange} 
-                    value={values.email} 
-                    placeholder='Enter Email' 
+                    value={values.username} 
+                    placeholder='Enter Username' 
                     maxLength='35'
                     />
                 </label>
@@ -44,7 +44,7 @@ export default function logIn (props) {
                     onChange={onChange}
                     value={values.password}
                     placeholder='Enter Password'
-                    Maxlength='12'
+                    maxLength='12'
                     />
                 </label>
 
