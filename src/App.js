@@ -2,14 +2,37 @@ import React from "react";
 import "./App.css";
 import Organizer from "./components/Organizer"
 import Private from "./utils/PrivateRoute";
-import { BrowserRouter as Router, Route } from "react-router-dom";
-import AxiosWithAuth from "./utils/AxiosWithAuth";
-import { OrganizerCard } from "./components/OrganizerCard";
+import { Route, Switch, Link, useHistory } from "react-router-dom";
+import Authorization from "./utils/AxiosWithAuth";
+import Home from "./components/Home";
+
+import DummyLogin from "./components/DummyLogin";
 
 
 function App() {
+  const { push } = useHistory();
+
   return (
     <div>
+      <div className="App">
+        <header className="App-header">
+          <h1>Plan A Potluck</h1>
+          {/* <Switch> */}
+          {/* 
+            login component
+            */}
+          <DummyLogin />
+          <Link to="/Register">
+            <button onClick={() => push("/Register")}>Register</button>
+          </Link>
+          <Route exact path="/" />
+
+          <div className="">
+            <Private exact path="/Home" component={Home} />
+          </div>
+          {/* </Switch> */}
+        </header>
+      </div>
       <h1>Potluck Planner, Track Team #8 </h1>
       <br></br>
 
@@ -21,19 +44,9 @@ function App() {
       <br></br>
       <h2>Tzong-Lian Tsay, Unit 3</h2>
       <br></br>
+
       <Organizer />  
-      <Router>
-        <div className="App">
-          <header className="App-header">
-            <h1>Plan A Potluck</h1>
-            <Route exact path="/" a />
-          </header>
-          <div className="">
-            <Private path="/protected" component={Home} />
-          </div>
-        </div>
-      </Router>
-    </div>
+     </div>
   );
 }
 

@@ -22,7 +22,7 @@ let CreatePotluck = (props) => {
     };
 
     Authorization()
-      .post("/potluck", data)
+      .post("/event", data)
       .then((res) => {
         console.log(res);
         updateColors(res.data);
