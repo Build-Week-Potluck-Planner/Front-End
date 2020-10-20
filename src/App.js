@@ -1,9 +1,11 @@
 import React from "react";
 import "./App.css";
+import Organizer from "./components/Organizer"
 import Private from "./utils/PrivateRoute";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import AxiosWithAuth from "./utils/AxiosWithAuth";
 import { OrganizerCard } from "./components/OrganizerCard";
+
 
 function App() {
   return (
@@ -19,7 +21,7 @@ function App() {
       <br></br>
       <h2>Tzong-Lian Tsay, Unit 3</h2>
       <br></br>
-
+      <Organizer />  
       <Router>
         <div className="App">
           <header className="App-header">
@@ -27,7 +29,7 @@ function App() {
             <Route exact path="/" a />
           </header>
           <div className="">
-            <Private path="/protected" component={OrganizerCard} />
+            <Private path="/protected" component={Home} />
           </div>
         </div>
       </Router>
