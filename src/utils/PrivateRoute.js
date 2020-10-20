@@ -1,5 +1,5 @@
 import React from "react";
-import { Route, Redirect, Redirect } from "react-router-dom";
+import { Route, Redirect } from "react-router-dom";
 import OrganizerCard from "../components/OrganizerCard";
 
 const Private = ({ component: OrganizerCard, ...props }) => {
