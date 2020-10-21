@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Route } from "react-router-dom";
-import { EventCard } from "./EventCard";
+import EventCard from "../components/EventCard";
 import { UserCard } from "./UserCard";
 import { authorization } from "../utils/AxiosWithAuth";
 
