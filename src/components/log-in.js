@@ -2,57 +2,60 @@ import React, { useState } from 'react';
 import * as yup from 'yup';
 import axios from 'axios'
 
-export default function logIn (props) {
-    const { values, updates, sumbit } = props
+export default function Login () {
 
-    const login = () => {
-        const [loginState, setLoginState] = useState({
-            username: '',
-            password: '',
-        });
+    const [loginData, setLoginData] = useState({
+        username: '',
+        password: '',
+    });
 
-        const onChange = event => {
-            const {name, value} = event.target;
-            update(name, value);
-        }
+    const onChange = event => {
+        setLoginData({
+            ...loginData, 
+            [event.target.name]: event.target.value,
+        })
+    }
 
     const onSubmit = event => {
         event.preventDefault();
-        sumbit();
-    }
+        axios.post('https://potluck-planner-bw.herokuapp.com/users/login', user)
+        .then(result => {
+            console.log(result.data);
+            localStorage.setItem('token', result.data.token);
+            push('/Home');
+        })
+        .catch(error => {
+            console.log(error);
+        });
+    };
 
     return (
-        <form onSubmit={onSubmit}>
-            <div className='logIn inputs'>
+        <div className='logIn inputs'>
+            <form onSubmit={onSubmit}>
                 <label>Username
                     <input 
-                    id='username' 
                     type='text' 
                     name='username' 
                     onChange={onChange} 
-                    value={values.username} 
                     placeholder='Enter Username' 
-                    maxLength='35'
+                    maxLength='20'
                     />
                 </label>
 
                 <label>Password
                     <input 
-                    id='password'
                     type='text'
                     name='password'
                     onChange={onChange}
-                    value={values.password}
                     placeholder='Enter Password'
                     maxLength='12'
                     />
                 </label>
 
                 <div className='enter'>
-                <button>Enter</button>
+                    <button>Enter</button>
                 </div>
-            </div>
-        </form>
+            </form>
+        </div>
     )
-    }
 }
