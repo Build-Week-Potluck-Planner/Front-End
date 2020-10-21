@@ -82,8 +82,8 @@ function Home() {
         Get /ev 
         */}
           {potlucks.map((potluck) => (
-            <div>
-              <EventCard props={potluck} key={potluck.event_id} />
+            <div key={potluck.event_id}>
+              <EventCard props={potluck} />
             </div>
           ))}
 
