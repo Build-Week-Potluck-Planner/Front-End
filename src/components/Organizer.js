@@ -7,6 +7,7 @@ import schema from "../schema";
 import { Route, Link } from "react-router-dom";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import { authorization } from "../utils/AxiosWithAuth";
 
 const initialEvents = [];
 const initialDisabled = true;
@@ -40,8 +41,8 @@ function Organizer() {
   // const [selectedDate, setSelectedDate] = useState(new Date());
 
   const postNewEvent = (newEvent) => {
-    axios
-      .post("https://potluck-planner-bw.herokuapp.com/events/", newEvent)
+    authorization()
+      .post("/users/:id/events/", newEvent)
       .then((res) => {
         console.log(res.data);
         setEvents([...events, res.data]);
