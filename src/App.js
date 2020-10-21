@@ -4,8 +4,9 @@ import Organizer from "./components/Organizer";
 import Private from "./utils/PrivateRoute";
 import { Route, Switch, Link, useHistory } from "react-router-dom";
 import Authorization from "./utils/AxiosWithAuth";
-import Home from "./components/Home";
 
+import Home from "./components/Home";
+import Login from "./components/log-in";
 import DummyLogin from "./components/DummyLogin";
 
 function App() {
@@ -17,13 +18,21 @@ function App() {
         <h1>Plan A Potluck!</h1>
       </header>
       <div className="App-body">
-        {/* login component here, pre-loaded */}
-        <DummyLogin />
-        <br></br>
-        <Link to="/Register">
-          <button onClick={() => push("/Register")}>Register</button>
-        </Link>
-        <Private exact path="/Home" component={Home} />
+        <Route exact path="/">
+          <Login />
+          <br></br>
+          <DummyLogin />
+          <br></br>
+          <Link to="/register">
+            <button onClick={() => push("/register")}>Register</button>
+          </Link>
+        </Route>
+        {/* Create Potluck Route */}
+        <Route path="/potluck">
+          <Organizer />
+        </Route>
+        {/* Home Page Route */}
+        <Private path="/home" component={Home} />
       </div>
       <footer>
         <br></br>
@@ -34,7 +43,6 @@ function App() {
         <p>Tzong-Lian Tsay, Unit 3</p>
         <br></br>
       </footer>
-      <Organizer />
     </div>
   );
 }
