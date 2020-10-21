@@ -10,7 +10,7 @@ export default function Signup() {
   const [signUpData, setSignUpData] = useState({
     username: "",
     password: "",
-    fullname: "",
+    full_name: "",
     email: "",
   });
 
@@ -64,7 +64,7 @@ export default function Signup() {
           Full Name
           <input
             type="text"
-            name="fullname"
+            name="full_name"
             onChange={onChange}
             placeholder="Enter Your Full Name"
             maxLength="25"
