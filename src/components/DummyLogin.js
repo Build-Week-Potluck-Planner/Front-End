@@ -29,7 +29,7 @@ const DummyLogin = () => {
   return (
     <div>
       <form onSubmit={submit}>
-        <button>Login</button>
+        <button>Dummy Login</button>
       </form>
     </div>
   );
