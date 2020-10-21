@@ -5,7 +5,7 @@ import { UserCard } from "./UserCard";
 import { authorization } from "../utils/AxiosWithAuth";
 
 // Component Pages
-// import createPotluck
+import Organizer from "./Organizer";
 // import organizerCard
 // import guestCard
 import { UserContext } from "../contexts/UserContext";
@@ -72,6 +72,7 @@ function Home() {
     <div className="Home">
       <h1>My Potlucks! </h1>
       <section>
+        <Organizer />
         <div>{/* CreatePotlucks */}</div>
       </section>
       <section>
