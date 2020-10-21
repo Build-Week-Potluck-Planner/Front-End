@@ -22,7 +22,7 @@ function Home() {
   };
 
   // Initialize with current list of potlucks
-  const getPotluck = () => {
+  const getPotlucks = () => {
     authorization()
       .get("/events")
       .then((res) => {
@@ -33,13 +33,13 @@ function Home() {
   };
 
   useEffect(() => {
-    getPotluck();
+    getPotlucks();
   }, []);
 
   // Delete Potluck, on separate function
-  // const deletePotluck = (potluck) => {
-  //   axiosWithAuth()
-  //     .delete(`http://backend-bw.herokuapp.com/potlucks/${potluck.id}`, potluck)
+  // const deletePotluck = (event_id) => {
+  //   authorization()
+  //     .delete("/events/:id", event_id)
   //     .then((res) => getPotluck())
   //     .catch((err) => console.log(err));
   // };
