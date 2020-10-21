@@ -151,15 +151,11 @@ function Organizer() {
               // desserts={event.desserts}
               // entrees={event.entrees}
               // utensils={event.utensils}
-            />
-          );
-        })}
-      </Route>
-      <br></br>
-      <DatePicker
-        selected={startDate}
-        onChange={(date) => setStartDate(date)}
-      />
+            />)
+          })}
+        </Route>
+        <br></br>
+        <DatePicker startDate={startDate} onChange={date => setStartDate(date)} />
     </div>
   ); //return
 } //App

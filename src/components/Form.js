@@ -31,7 +31,7 @@ function Form(props){
                         placeholder='Thanksgiving Potluck'
                     />
                 </label>
-                <label>
+                {/* <label>
                     Date
                     <input 
                         value={values.date}
@@ -48,7 +48,7 @@ function Form(props){
                         name='time'
                         type='text'
                     /> 
-                </label>
+                </label> */}
                 <label>
                     Description
                     <input 
