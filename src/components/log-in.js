@@ -1,17 +1,36 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import * as yup from "yup";
 import axios from "axios";
 
+const schema = yup.object().shape({
+  username: yup.string().required('Username is Required'),
+  password: yup.string().required('Password is Required'),
+})
+
 export default function Login() {
   const { push } = useHistory();
+
+  const [disabled, setDisabled] = useState(true);
 
   const [loginData, setLoginData] = useState({
     username: "",
     password: "",
   });
 
+  const [errors, setErrors] = useState({
+    username: "",
+    password: "",
+  });
+
+  const setLoginDataErrors = (name, value) => {
+    yup.reach(schema, name).validate(value)
+    .then(() => setErrors({ ...errors, [name]: '' }))
+    .catch(err => setErrors({ ...errors, [name]: err.errors[0]}))
+  };
+
   const onChange = (event) => {
+    setLoginDataErrors(name, value)
     setLoginData({
       ...loginData,
       [event.target.name]: event.target.value,
@@ -32,14 +51,25 @@ export default function Login() {
       });
   };
 
+  useEffect(() => {
+    schema.isValid(loginData).then(valid => setDisabled(!valid))
+  }, [loginData]);
+
   return (
     <div className="logIn inputs">
+
+      <div style={{ color: "red" }}>
+        <div>{errors.username}</div>
+        <div>{errors.password}</div>
+      </div>
+      
       <form onSubmit={onSubmit}>
         <label>
           Username
           <input
             type="text"
             name="username"
+            value={loginData.username}
             onChange={onChange}
             placeholder="Enter Username"
             maxLength="20"
@@ -51,6 +81,7 @@ export default function Login() {
           <input
             type="text"
             name="password"
+            value={loginData.password}
             onChange={onChange}
             placeholder="Enter Password"
             maxLength="12"
@@ -58,7 +89,7 @@ export default function Login() {
         </label>
 
         <div className="enter">
-          <button>Enter</button>
+          <button disabled={disabled}>Enter</button>
         </div>
       </form>
     </div>
