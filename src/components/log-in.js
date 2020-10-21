@@ -30,6 +30,7 @@ export default function Login() {
   };
 
   const onChange = (event) => {
+    const { value, name } = event.target
     setLoginDataErrors(name, value)
     setLoginData({
       ...loginData,
