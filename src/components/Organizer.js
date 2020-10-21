@@ -18,15 +18,7 @@ const initialFormValues = {
   address: "",
   city: "",
   state: "",
-  // email: '',
-  // organizer: '',
   // guests: '',
-  // location: '',
-  //item categories for now
-  // drinks: '',
-  // desserts: '',
-  // entrees: '',
-  // utensils: '',
 };
 
 const initialFormErrors = {
@@ -37,11 +29,7 @@ const initialFormErrors = {
   address: "",
   city: "",
   state: "",
-  // email: '',
-  // organizer: '',
   // guests: '',
-  // location: '',
-  // items: '',
 };
 
 function Organizer() {
@@ -49,7 +37,7 @@ function Organizer() {
   const [formValues, setFormValues] = useState(initialFormValues);
   const [formErrors, setFormErrors] = useState(initialFormErrors);
   const [disabled, setDisabled] = useState(initialDisabled);
-  const [startDate, setStartDate] = useState(new Date());
+  // const [selectedDate, setSelectedDate] = useState(new Date());
 
   const postNewEvent = (newEvent) => {
     axios
@@ -89,16 +77,13 @@ function Organizer() {
   const formSubmit = () => {
     const newEvent = {
       event_name: formValues.event_name.trim(),
-      date: formValues.date.trim(),
-      time: formValues.time.trim(),
+      date: formValues.date,
+      time: formValues.time,
       description: formValues.description.trim(),
       address: formValues.address.trim(),
       city: formValues.city.trim(),
       state: formValues.state.trim(),
-      // email: formValues.email.trim(),
-      // organizer: formValues.organizer.trim(),
       // guests: formValues.guests.trim(),
-      // location: formValues.location.trim(),
       // items: ['drinks', 'desserts', 'entrees', 'utensils', ].filter((item) => formValues[item]),
     };
     postNewEvent(newEvent);
@@ -109,6 +94,9 @@ function Organizer() {
       setDisabled(!valid);
     });
   }, [formValues]);
+
+  // console.log(formValues);
+  // console.log(selectedDate);
 
   return (
     <div className="App">
@@ -143,19 +131,12 @@ function Organizer() {
               address={event.address}
               city={event.city}
               state={event.state}
-              // email={event.email}
-              // organizer={event.organizer}
               // guests={event.guests}
-              // location={event.location}
-              // drinks={event.drinks}
-              // desserts={event.desserts}
-              // entrees={event.entrees}
-              // utensils={event.utensils}
             />)
           })}
         </Route>
         <br></br>
-        <DatePicker startDate={startDate} onChange={date => setStartDate(date)} />
+        {/* <DatePicker selected={selectedDate} onChange={setSelectedDate} /> */}
     </div>
   ); //return
 } //App

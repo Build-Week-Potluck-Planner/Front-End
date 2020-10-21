@@ -12,6 +12,11 @@ function Form(props){
         submit()
     }
 
+    const cancel = e => {
+        e.preventDefault()
+        e.history.push(`/home`)
+    }
+
     const onChange = (evt) => {
         const { name, value, type, checked } = evt.target
         const valueToUse = type === 'checkbox' ? checked: value
@@ -22,71 +27,74 @@ function Form(props){
         <form className='form-container' onSubmit={onSubmit}>
             <div className='form inputs'>
                 <label>
-                    Name of Potluck
                     <input 
                         value={values.event_name}
                         onChange={onChange}
                         name='event_name'
                         type='text'
-                        placeholder='Thanksgiving Potluck'
+                        placeholder='Event Name'
                     />
                 </label>
-                {/* <label>
-                    Date
+                <br></br>
+                <br></br>
+                <label>
+                    Date: 
                     <input 
                         value={values.date}
                         onChange={onChange}
                         name='date'
-                        type='text'
+                        type='date'
                     /> 
                 </label>
                 <label>
-                    Time
+                    Time: 
                     <input 
                         value={values.time}
                         onChange={onChange}
                         name='time'
-                        type='text'
+                        type='time'
                     /> 
-                </label> */}
+                </label> 
+                <br></br>
+                <br></br>
                 <label>
-                    Description
                     <input 
                         value={values.description}
                         onChange={onChange}
                         name='description'
                         type='text'
-                        placeholder='20th Annual Friendsgiving Potluck hosted by John Doe'
+                        placeholder='Description'
                     /> 
                 </label>
+                <br></br>
+                <br></br>
                 <label>
-                    Address
                     <input 
                         value={values.address}
                         onChange={onChange}
                         name='address'
                         type='text'
-                        placeholder='123 Sesame Street'
+                        placeholder='Address'
                     /> 
                 </label>
+                <br></br>
+                <br></br>
                 <label>
-                    City
                     <input 
                         value={values.city}
                         onChange={onChange}
                         name='city'
                         type='text'
-                        placeholder='Manhattan'
+                        placeholder='City'
                     /> 
                 </label>
                 <label>
-                    State
                     <input 
                         value={values.state}
                         onChange={onChange}
                         name='state'
                         type='text'
-                        placeholder='New York'
+                        placeholder='State'
                     /> 
                 </label>
                 {/* <label>
@@ -159,7 +167,10 @@ function Form(props){
                 <br></br>
                 {/* <DatePicker selected={startDate} onChange={date => setStartDate(date)} />
                 <br></br> */}
+                <br></br>
+                <br></br>
                 <button id='submit' disabled={disabled}>Submit</button>
+                <button id='cancel' onClick={cancel}>Cancel</button>
                 <br></br>
                 <div className='errors'>
                     <div>{errors.name}</div>
