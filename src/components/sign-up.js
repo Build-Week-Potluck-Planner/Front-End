@@ -1,8 +1,9 @@
 import React, { useState } from "react";
-
 import * as yup from "yup";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
+import { authorization } from '../utils/AxiosWithAuth';
+
 export default function Signup() {
   const { push } = useHistory();
 
@@ -22,13 +23,11 @@ export default function Signup() {
 
   const onSubmit = (event) => {
     event.preventDefault();
-    axios
-      .post(
-        "https://potluck-planner-bw.herokuapp.com/users/register",
-        signUpData
-      )
+    authorization()
+      .post("https://potluck-planner-bw.herokuapp.com/users/register", signUpData)
       .then((result) => {
         console.log(result.data);
+        localStorage.setItem("token", result.data.token);
         push("/Home");
       })
       .catch((error) => {
@@ -38,7 +37,7 @@ export default function Signup() {
 
   return (
     <div>
-      <form onSubit={onSubmit}>
+      <form onSubmit={onSubmit}>
         <label>
           Username
           <input
@@ -79,7 +78,7 @@ export default function Signup() {
             name="email"
             onChange={onChange}
             placeholder="Enter Your Email"
-            maxLength="25"
+            maxLength="35"
           />
         </label>
 
