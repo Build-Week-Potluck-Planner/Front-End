@@ -5,6 +5,7 @@ import Private from "./utils/PrivateRoute";
 import { Route, Switch, Link, useHistory } from "react-router-dom";
 import Authorization from "./utils/AxiosWithAuth";
 
+import Signup from "./components/sign-up";
 import Home from "./components/Home";
 import Login from "./components/log-in";
 import DummyLogin from "./components/DummyLogin";
@@ -18,16 +19,25 @@ function App() {
         <h1>Plan A Potluck!</h1>
       </header>
       <div className="App-body">
+        {/* Load on App page*/}
+
         <Route exact path="/">
           <Login />
           <br></br>
           <DummyLogin />
           <br></br>
-          <Link to="/register">
-            <button onClick={() => push("/register")}>Register</button>
+          <Link to="/signup">
+            <button onClick={() => push("/signup")}>Signup</button>
           </Link>
         </Route>
+
+        {/* Create Signup Route */}
+        <Route path="/signup">
+          <Signup />
+        </Route>
+
         {/* Create Potluck Route */}
+
         <Route path="/potluck">
           <Organizer />
         </Route>
