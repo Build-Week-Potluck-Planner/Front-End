@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import * as yup from "yup";
 import axios from "axios";
+import { authorization } from "../utils/AxiosWithAuth";
 
 const schema = yup.object().shape({
   username: yup.string().required('Username is Required'),
@@ -40,7 +41,7 @@ export default function Login() {
 
   const onSubmit = (event) => {
     event.preventDefault();
-    axios
+    authorization()
       .post("https://potluck-planner-bw.herokuapp.com/users/login", loginData)
       .then((result) => {
         console.log(result.data);
@@ -49,6 +50,7 @@ export default function Login() {
       })
       .catch((error) => {
         console.log(error);
+        window.alert('Username or Password is Incorrect')
       });
   };
 
