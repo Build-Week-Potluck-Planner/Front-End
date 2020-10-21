@@ -100,7 +100,7 @@ function Organizer() {
 
   return (
     <div className="App">
-      <Link id="home" to="/">
+      <Link id="home" to="/home">
         Home
       </Link>
       <br></br>
@@ -118,7 +118,7 @@ function Organizer() {
           disabled={disabled}
         />
       </Route>
-      <Route exact path="/">
+      <Route exact path="/home">
         <h2>Home Page</h2>
         {events.map((event) => {
           return (
