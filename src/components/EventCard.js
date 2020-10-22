@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { makeStyles, withTheme } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardActionArea from "@material-ui/core/CardActionArea";
@@ -46,10 +46,12 @@ const useStyles = makeStyles({
   },
 });
 
-function EventCard({ props }) {
+function EventCard({ props, users }) {
   // const { getPotlucks, props } = prettyprops;
   const classes = useStyles();
   const date = newDate(props.date);
+  const userFilter = users.filter((user)=>(user.user_id===props.organizer_id))
+  console.log(userFilter)
   // console.log(props);
   // console.log("prettyprops", prettyprops);
 
@@ -86,8 +88,8 @@ function EventCard({ props }) {
             Description: <span></span>
             {props.description} <br></br>
             Organizer Id: <span></span>
-            {props.organizer_id}{" "}
-            {/* <OrganizerName name={props.organizer_id} /> */}
+            {userFilter ? userFilter[0].full_name : null}{" "}
+            {/* <OrganizerName name={props.guests.full_name} /> */}
           </Typography>
           <Typography
             className={classes.type3}

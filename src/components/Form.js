@@ -3,7 +3,7 @@ import React from "react";
 // import 'react-datepicker/dist/react-datepicker.css';
 
 function Form(props) {
-  const { values, errors, change, submit, disabled } = props;
+  const { values, errors, change, submit, disabled, clear, setFormValues } = props;
 
   // const [startDate, setStartDate] = useState(new Date())
 
@@ -12,9 +12,9 @@ function Form(props) {
     submit();
   };
 
-  const cancel = (e) => {
+  const clearForm = (e) => {
     e.preventDefault();
-    e.history.push(`/home`);
+    setFormValues(clear)
   };
 
   const onChange = (evt) => {
@@ -62,8 +62,9 @@ function Form(props) {
             value={values.description}
             onChange={onChange}
             name="description"
-            type="text"
+            type="textarea"
             placeholder="Description"
+            rows={5}
           />
         </label>
         <br></br>
@@ -169,9 +170,9 @@ function Form(props) {
                 <br></br> */}
         <br></br>
         <br></br>
-        <button id="submit" /*disabled={disabled}*/>Submit</button>
-        <button id="cancel" onClick={cancel}>
-          Cancel
+        <button id="submit" disabled={disabled}>Submit</button>
+        <button id="clear" onClick={clearForm}>
+          Clear
         </button>
         <br></br>
         <div className="errors">

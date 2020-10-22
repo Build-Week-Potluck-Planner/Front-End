@@ -18,6 +18,7 @@ function Home() {
   const [editing, setEditing] = useState(false);
   const [potluckToEdit, setPotluckToEdit] = useState({});
   const [potlucks, setPotlucks] = useState([]);
+  const [users, setUsers ] = useState([])
 
   // Helper Functions
   const editPotluck = (potluck) => {
@@ -38,6 +39,17 @@ function Home() {
 
   useEffect(() => {
     getPotlucks();
+  }, []);
+
+  useEffect(() => {
+    authorization()
+      .get("/users")
+      .then((res) => {
+        setUsers(res.data);
+        console.log(res.data);
+      })
+      .catch((err) => 
+      console.log(err.response));
   }, []);
 
   // Delete Potluck, on separate function
@@ -69,7 +81,7 @@ function Home() {
       {potlucks.map((potluck) => (
         <div key={potluck.event_id}>
           {potluck.organizer_id === Number(localId) ? (
-            <EventCard props={potluck} />
+            <EventCard props={potluck} users={users} />
           ) : (
             ""
           )}
@@ -80,7 +92,7 @@ function Home() {
       <section>
         {potlucks.map((potluck) => (
           <div key={potluck.event_id}>
-            <EventCard props={potluck} />
+            <EventCard props={potluck} users={users} />
           </div>
         ))}
       </section>
