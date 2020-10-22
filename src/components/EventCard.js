@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { makeStyles, withTheme } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardActionArea from "@material-ui/core/CardActionArea";
@@ -49,13 +49,14 @@ const useStyles = makeStyles({
   },
 });
 
-function EventCard({ props, refreshList }) {
+
+function EventCard({ props, users, refreshList }) {
   const classes = useStyles();
   const date = newDate(props.date);
+  const userFilter = users.filter((user)=>(user.user_id===props.organizer_id))
+  console.log(userFilter)
   const { push } = useHistory();
-  // const { getPotlucks, props } = prettyprops;
-  // console.log(props);
-  // console.log("prettyprops", prettyprops);
+
 
   const deletePotluck = () => {
     const event_id = props.event_id;
@@ -90,8 +91,8 @@ function EventCard({ props, refreshList }) {
             Description: <span></span>
             {props.description} <br></br>
             Organizer Id: <span></span>
-            {props.organizer_id}{" "}
-            {/* <OrganizerName name={props.organizer_id} /> */}
+            {userFilter ? userFilter[0].full_name : null}{" "}
+            {/* <OrganizerName name={props.guests.full_name} /> */}
           </Typography>
           <Typography
             className={classes.type3}
@@ -110,10 +111,12 @@ function EventCard({ props, refreshList }) {
             color="textSecondary"
             component="p"
           >
-            Address : <span></span>
-            {props.address} <br></br>
-            {props.state} <></>
-            {props.city}
+
+              Address : <span></span>
+              {props.address} <br></br>
+              {props.city} <></> 
+              {props.state}
+              
           </Typography>
         </CardContent>
       </CardActionArea>

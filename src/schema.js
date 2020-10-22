@@ -9,7 +9,7 @@ export default yup.object().shape({
         .date()
         .required('Please enter a date for the potluck event.'),
     time: yup
-        .number()
+        .mixed()
         .required('Please enter a time for the potluck event.'),
     description: yup
         .string()

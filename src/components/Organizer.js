@@ -19,7 +19,11 @@ const initialFormValues = {
   address: "",
   city: "",
   state: "",
-  // guests: '',
+  // guests: [{
+  //   "user_id": '',
+  //   "full_name": "",
+  //   "attending": false,
+  // }],
 };
 
 const initialFormErrors = {
@@ -30,7 +34,11 @@ const initialFormErrors = {
   address: "",
   city: "",
   state: "",
-  // guests: '',
+  // guests: [{
+  //   "user_id": '',
+  //   "full_name": "",
+  //   "attending": false,
+  // }]
 };
 
 function Organizer() {
@@ -44,7 +52,7 @@ function Organizer() {
 
   const postNewEvent = (newEvent) => {
     authorization()
-      .post(`/users/${localId}/events/`, newEvent)
+      .post(`/users/${localId}/events`, newEvent)
       .then((res) => {
         console.log(res.data);
         // setEvents([...events, res.data]);
@@ -87,6 +95,7 @@ function Organizer() {
       address: formValues.address.trim(),
       city: formValues.city.trim(),
       state: formValues.state.trim(),
+      guests: formValues.guests,
       // guests: formValues.guests.trim(),
       // items: ['drinks', 'desserts', 'entrees', 'utensils', ].filter((item) => formValues[item]),
     };
@@ -98,6 +107,17 @@ function Organizer() {
       setDisabled(!valid);
     });
   }, [formValues]);
+
+  useEffect(() => {
+    authorization()
+    .get(`/users/${localId}/events/`)
+    .then((res) => {
+      console.log(res.data)
+    })
+    .catch((err) =>{
+      console.log(err)
+    })
+  }, [])
 
   // console.log(formValues);
   // console.log(selectedDate);
@@ -120,6 +140,8 @@ function Organizer() {
           change={inputChange}
           submit={formSubmit}
           disabled={disabled}
+          clear={initialFormValues}
+          setFormValues={setFormValues}
         />
       </Route>
       {/* <Route exact path="/home">
