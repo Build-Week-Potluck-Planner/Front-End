@@ -4,7 +4,7 @@ import Event from "./Event";
 import axios from "axios";
 import * as yup from "yup";
 import schema from "../schema";
-import { Route, Link } from "react-router-dom";
+import { Route, Link, useHistory } from "react-router-dom";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { authorization } from "../utils/AxiosWithAuth";
@@ -39,14 +39,17 @@ function Organizer() {
   const [formErrors, setFormErrors] = useState(initialFormErrors);
   const [disabled, setDisabled] = useState(initialDisabled);
   // const [selectedDate, setSelectedDate] = useState(new Date());
+  const localId = localStorage.getItem("local_id");
+  const { push } = useHistory();
 
   const postNewEvent = (newEvent) => {
     authorization()
-      .post("/users/:id/events/", newEvent)
+      .post(`/users/${localId}/events/`, newEvent)
       .then((res) => {
         console.log(res.data);
-        setEvents([...events, res.data]);
+        // setEvents([...events, res.data]);
         setFormValues(initialFormValues);
+        push("/Home");
       })
       .catch((err) => {
         console.log(err);
@@ -119,7 +122,7 @@ function Organizer() {
           disabled={disabled}
         />
       </Route>
-      <Route exact path="/home">
+      {/* <Route exact path="/home">
         <h2>Home Page</h2>
         {events.map((event) => {
           return (
@@ -133,11 +136,12 @@ function Organizer() {
               city={event.city}
               state={event.state}
               // guests={event.guests}
-            />)
-          })}
-        </Route>
-        <br></br>
-        {/* <DatePicker selected={selectedDate} onChange={setSelectedDate} /> */}
+            />
+          );
+        })}
+      </Route> */}
+      <br></br>
+      {/* <DatePicker selected={selectedDate} onChange={setSelectedDate} /> */}
     </div>
   ); //return
 } //App

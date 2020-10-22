@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import * as yup from "yup";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
-import { authorization } from '../utils/AxiosWithAuth';
+import { authorization } from "../utils/AxiosWithAuth";
 
 export default function Signup() {
   const { push } = useHistory();
@@ -24,11 +24,13 @@ export default function Signup() {
   const onSubmit = (event) => {
     event.preventDefault();
     authorization()
-      .post("https://potluck-planner-bw.herokuapp.com/users/register", signUpData)
+      .post(
+        "https://potluck-planner-bw.herokuapp.com/users/register",
+        signUpData
+      )
       .then((result) => {
         console.log(result.data);
-        localStorage.setItem("token", result.data.token);
-        push("/Home");
+        push("/");
       })
       .catch((error) => {
         console.log(error);

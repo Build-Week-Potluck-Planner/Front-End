@@ -1,103 +1,103 @@
-import React from 'react';
+import React from "react";
 // import DatePicker from 'react-datepicker';
 // import 'react-datepicker/dist/react-datepicker.css';
 
-function Form(props){
-    const { values, errors, change, submit, disabled } = props
+function Form(props) {
+  const { values, errors, change, submit, disabled } = props;
 
-    // const [startDate, setStartDate] = useState(new Date())
+  // const [startDate, setStartDate] = useState(new Date())
 
-    const onSubmit = (evt) => {
-        evt.preventDefault()
-        submit()
-    }
+  const onSubmit = (evt) => {
+    evt.preventDefault();
+    submit();
+  };
 
-    const cancel = e => {
-        e.preventDefault()
-        e.history.push(`/home`)
-    }
+  const cancel = (e) => {
+    e.preventDefault();
+    e.history.push(`/home`);
+  };
 
-    const onChange = (evt) => {
-        const { name, value, type, checked } = evt.target
-        const valueToUse = type === 'checkbox' ? checked: value
-        change(name, valueToUse)
-    }
+  const onChange = (evt) => {
+    const { name, value, type, checked } = evt.target;
+    const valueToUse = type === "checkbox" ? checked : value;
+    change(name, valueToUse);
+  };
 
-    return (
-        <form className='form-container' onSubmit={onSubmit}>
-            <div className='form inputs'>
-                <label>
-                    <input 
-                        value={values.event_name}
-                        onChange={onChange}
-                        name='event_name'
-                        type='text'
-                        placeholder='Event Name'
-                    />
-                </label>
-                <br></br>
-                <br></br>
-                <label>
-                    Date: 
-                    <input 
-                        value={values.date}
-                        onChange={onChange}
-                        name='date'
-                        type='date'
-                    /> 
-                </label>
-                <label>
-                    Time: 
-                    <input 
-                        value={values.time}
-                        onChange={onChange}
-                        name='time'
-                        type='time'
-                    /> 
-                </label> 
-                <br></br>
-                <br></br>
-                <label>
-                    <input 
-                        value={values.description}
-                        onChange={onChange}
-                        name='description'
-                        type='text'
-                        placeholder='Description'
-                    /> 
-                </label>
-                <br></br>
-                <br></br>
-                <label>
-                    <input 
-                        value={values.address}
-                        onChange={onChange}
-                        name='address'
-                        type='text'
-                        placeholder='Address'
-                    /> 
-                </label>
-                <br></br>
-                <br></br>
-                <label>
-                    <input 
-                        value={values.city}
-                        onChange={onChange}
-                        name='city'
-                        type='text'
-                        placeholder='City'
-                    /> 
-                </label>
-                <label>
-                    <input 
-                        value={values.state}
-                        onChange={onChange}
-                        name='state'
-                        type='text'
-                        placeholder='State'
-                    /> 
-                </label>
-                {/* <label>
+  return (
+    <form className="form-container" onSubmit={onSubmit}>
+      <div className="form inputs">
+        <label>
+          <input
+            value={values.event_name}
+            onChange={onChange}
+            name="event_name"
+            type="text"
+            placeholder="Event Name"
+          />
+        </label>
+        <br></br>
+        <br></br>
+        <label>
+          Date:
+          <input
+            value={values.date}
+            onChange={onChange}
+            name="date"
+            type="date"
+          />
+        </label>
+        <label>
+          Time:
+          <input
+            value={values.time}
+            onChange={onChange}
+            name="time"
+            type="time"
+          />
+        </label>
+        <br></br>
+        <br></br>
+        <label>
+          <input
+            value={values.description}
+            onChange={onChange}
+            name="description"
+            type="text"
+            placeholder="Description"
+          />
+        </label>
+        <br></br>
+        <br></br>
+        <label>
+          <input
+            value={values.address}
+            onChange={onChange}
+            name="address"
+            type="text"
+            placeholder="Address"
+          />
+        </label>
+        <br></br>
+        <br></br>
+        <label>
+          <input
+            value={values.city}
+            onChange={onChange}
+            name="city"
+            type="text"
+            placeholder="City"
+          />
+        </label>
+        <label>
+          <input
+            value={values.state}
+            onChange={onChange}
+            name="state"
+            type="text"
+            placeholder="State"
+          />
+        </label>
+        {/* <label>
                     Email
                     <input 
                         value={values.email}
@@ -164,20 +164,22 @@ function Form(props){
                     /> 
                     Utensils
                 </label> */}
-                <br></br>
-                {/* <DatePicker selected={startDate} onChange={date => setStartDate(date)} />
+        <br></br>
+        {/* <DatePicker selected={startDate} onChange={date => setStartDate(date)} />
                 <br></br> */}
-                <br></br>
-                <br></br>
-                <button id='submit' disabled={disabled}>Submit</button>
-                <button id='cancel' onClick={cancel}>Cancel</button>
-                <br></br>
-                <div className='errors'>
-                    <div>{errors.name}</div>
-                </div>
-            </div>
-        </form>
-    )//return
-}//Form
+        <br></br>
+        <br></br>
+        <button id="submit" /*disabled={disabled}*/>Submit</button>
+        <button id="cancel" onClick={cancel}>
+          Cancel
+        </button>
+        <br></br>
+        <div className="errors">
+          <div>{errors.name}</div>
+        </div>
+      </div>
+    </form>
+  ); //return
+} //Form
 
-export default Form
+export default Form;
