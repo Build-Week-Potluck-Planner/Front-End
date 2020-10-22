@@ -62,7 +62,7 @@ export default function Login() {
   }, [loginData]);
 
   return (
-    <div className="logIn inputs">
+    <div className="logIn_inputs">
       <div style={{ color: "red" }}>
         <div>{errors.username}</div>
         <div>{errors.password}</div>
