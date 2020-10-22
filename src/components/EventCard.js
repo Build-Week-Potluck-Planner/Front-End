@@ -9,7 +9,7 @@ import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import { newDate } from "../utils/newDate";
 import { authorization } from "../utils/AxiosWithAuth";
-import Organizer from "./Organizer";
+import { useHistory } from "react-router-dom";
 
 const useStyles = makeStyles({
   root: {
@@ -46,19 +46,24 @@ const useStyles = makeStyles({
   },
 });
 
-function EventCard({ props }) {
-  // const { getPotlucks, props } = prettyprops;
+function EventCard({ props, refreshList }) {
   const classes = useStyles();
   const date = newDate(props.date);
+  const { push } = useHistory();
+  // const { getPotlucks, props } = prettyprops;
   // console.log(props);
   // console.log("prettyprops", prettyprops);
 
-  // const deletePotluck = (event_id) => {
-  //   authorization()
-  //     .delete("/events/:id", event_id)
-  //     .then((res) => getPotlucks())
-  //     .catch((err) => console.log(err));
-  // };
+  const deletePotluck = () => {
+    const event_id = props.event_id;
+    authorization()
+      .delete(`/events/${event_id}`)
+      .then((res) => {
+        console.log(res);
+        refreshList();
+      })
+      .catch((err) => console.log(err));
+  };
 
   return (
     <Card className={classes.root}>
@@ -118,15 +123,15 @@ function EventCard({ props }) {
         </CardContent>
       </CardActionArea>
       <CardActions className={classes.buttons}>
-        <Button
-          // onClick={deletePotluck(props.event_id)}
-          variant="outlined"
-          size="large"
-          color="primary"
-        >
+        <Button variant="outlined" size="large" color="primary">
           Edit
         </Button>
-        <Button variant="outlined" size="large" color="secondary">
+        <Button
+          onClick={deletePotluck}
+          variant="outlined"
+          size="large"
+          color="secondary"
+        >
           Delete
         </Button>
       </CardActions>
