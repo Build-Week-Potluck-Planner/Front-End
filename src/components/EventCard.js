@@ -9,6 +9,7 @@ import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import { newDate } from "../utils/newDate";
 import { authorization } from "../utils/AxiosWithAuth";
+import Organizer from "./Organizer";
 
 const useStyles = makeStyles({
   root: {
@@ -86,6 +87,7 @@ function EventCard({ props }) {
             {props.description} <br></br>
             Organizer Id: <span></span>
             {props.organizer_id}{" "}
+            {/* <OrganizerName name={props.organizer_id} /> */}
           </Typography>
           <Typography
             className={classes.type3}

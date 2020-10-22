@@ -22,13 +22,19 @@ function App() {
         {/* Load on App page*/}
 
         <Route exact path="/">
-          <Login />
+          <Link to="/login">
+            <button onClick={() => push("/login")}>Login</button>
+          </Link>
           <br></br>
           <DummyLogin />
           <br></br>
           <Link to="/signup">
             <button onClick={() => push("/signup")}>Signup</button>
           </Link>
+        </Route>
+
+        <Route path="/login">
+          <Login />
         </Route>
 
         {/* Create Signup Route */}
