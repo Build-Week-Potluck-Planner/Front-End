@@ -12,10 +12,13 @@ import { UserContext } from "../contexts/UserContext";
 
 function Home() {
   const { push } = useHistory();
+  const localId = localStorage.getItem("local_id");
+
   // State variables
   const [editing, setEditing] = useState(false);
   const [potluckToEdit, setPotluckToEdit] = useState({});
   const [potlucks, setPotlucks] = useState([]);
+
   // Helper Functions
   const editPotluck = (potluck) => {
     setEditing(true);
@@ -61,11 +64,20 @@ function Home() {
           <button onClick={() => push("/logout")}>Logout</button>
         </Link>
       </nav>
-      <h1>My Potlucks! </h1>
-      <section>
-        <Organizer />
-      </section>
-      {/* All Potlucks */}
+      <h1> MY POTLUCKS! </h1>
+      <Organizer />
+      {potlucks.map((potluck) => (
+        <div key={potluck.event_id}>
+          {console.log(potluck.organizer_id, Number(localId))}
+          {potluck.organizer_id === Number(localId) ? (
+            <EventCard props={potluck} />
+          ) : (
+            ""
+          )}
+        </div>
+      ))}
+      <h1> INVITED TO POTLUCKS! </h1>
+      <h1> ALL POTLUCKS! </h1>
       <section>
         {potlucks.map((potluck) => (
           <div key={potluck.event_id}>
