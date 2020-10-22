@@ -113,8 +113,9 @@ function EventCard({ props, users }) {
             <p>
               Address : <span></span>
               {props.address} <br></br>
-              {props.state} <></>
-              {props.city}
+              {props.city} <></> 
+              {props.state}
+              
             </p>
           </Typography>
         </CardContent>
