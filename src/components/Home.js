@@ -39,18 +39,30 @@ function Home() {
 
   useEffect(() => {
     getPotlucks();
+    getUsersName();
   }, []);
 
-  useEffect(() => {
+  const getUsersName = () => {
     authorization()
       .get("/users")
       .then((res) => {
-        setUsers(res.data);
+       setUsers(res.data);
         console.log(res.data);
       })
       .catch((err) => 
       console.log(err.response));
-  }, []);
+  };
+
+  // useEffect(() => {
+  //   authorization()
+  //     .get("/users")
+  //     .then((res) => {
+  //       setUsers(res.data);
+  //       console.log(res.data);
+  //     })
+  //     .catch((err) => 
+  //     console.log(err.response));
+  // }, []);
 
   // Delete Potluck, on separate function
   // const deletePotluck = (event_id) => {
@@ -87,7 +99,6 @@ function Home() {
           )}
         </div>
       ))}
-      <h1> INVITED TO POTLUCKS! </h1>
       <h1> ALL POTLUCKS! </h1>
       <section>
         {potlucks.map((potluck) => (

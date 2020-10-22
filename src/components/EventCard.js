@@ -90,7 +90,7 @@ function EventCard({ props, users, refreshList }) {
           >
             Description: <span></span>
             {props.description} <br></br>
-            Organizer Id: <span></span>
+            Organizer Name: <span></span>
             {userFilter ? userFilter[0].full_name : null}{" "}
             {/* <OrganizerName name={props.guests.full_name} /> */}
           </Typography>
