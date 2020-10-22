@@ -79,7 +79,7 @@ function EventCard({ props }) {
           </Typography>
           <Typography
             className={classes.type2}
-            variant="body2"
+            variant="body1"
             color="textSecondary"
             component="p"
           >
@@ -91,29 +91,25 @@ function EventCard({ props }) {
           </Typography>
           <Typography
             className={classes.type3}
-            variant="body3"
+            variant="body1"
             color="textSecondary"
             component="p"
           >
-            <p>
-              Date: <span></span>
-              {date} <br></br>
-              Time: <span></span>
-              {props.time}
-            </p>
+            Date: <span></span>
+            {date} <br></br>
+            Time: <span></span>
+            {props.time}
           </Typography>
           <Typography
             className={classes.type4}
-            variant="body4"
+            variant="body1"
             color="textSecondary"
             component="p"
           >
-            <p>
-              Address : <span></span>
-              {props.address} <br></br>
-              {props.state} <></>
-              {props.city}
-            </p>
+            Address : <span></span>
+            {props.address} <br></br>
+            {props.state} <></>
+            {props.city}
           </Typography>
         </CardContent>
       </CardActionArea>

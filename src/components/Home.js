@@ -3,7 +3,7 @@ import { Link, useHistory } from "react-router-dom";
 import EventCard from "../components/EventCard";
 import { UserCard } from "./UserCard";
 import { authorization } from "../utils/AxiosWithAuth";
-
+import OrganizerCard from "../components/OrganizerCard";
 // Component Pages
 import Organizer from "./Organizer";
 // import organizerCard
@@ -85,7 +85,9 @@ function Home() {
         ))}
       </section>
       <section>
-        <div>{/* Invited to */}</div>
+        <div>
+          <OrganizerCard />{" "}
+        </div>
       </section>
     </div>
   );

@@ -1,22 +1,38 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardActionArea from "@material-ui/core/CardActionArea";
 import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
 import Typography from "@material-ui/core/Typography";
+import { authorization } from "../utils/AxiosWithAuth";
 
 const useStyles = makeStyles({
   root: {
     maxWidth: 345,
   },
   media: {
-    height: 140,
+    height: 340,
   },
 });
 
-export default function OrganizerCard({ props }) {
+export default function OrganizerCard() {
   const classes = useStyles();
+  const [users, setUsersInfo] = useState([]);
+
+  const getUsersInfo = () => {
+    authorization()
+      .get("/users/20")
+      .then((res) => {
+        setUsersInfo(res.data);
+        console.log(res.data);
+      })
+      .catch((err) => console.log(err.response));
+  };
+
+  useEffect(() => {
+    getUsersInfo();
+  }, []);
 
   return (
     <Card className={classes.root}>
@@ -30,17 +46,15 @@ export default function OrganizerCard({ props }) {
           <Typography gutterBottom variant="h5" component="h2">
             Name:
           </Typography>
-          <Typography variant="body2" color="textSecondary" component="p">
+          <Typography variant="body1" color="textSecondary" component="p">
             Username:
           </Typography>
-          <Typography variant="body3" color="textSecondary" component="p">
+          <Typography variant="body1" color="textSecondary" component="p">
             Email:
           </Typography>
-          <Typography
-            variant="body2"
-            color="textSecondary"
-            component="p"
-          ></Typography>
+          <Typography variant="body1" color="textSecondary" component="p">
+            Events:
+          </Typography>
         </CardContent>
       </CardActionArea>
     </Card>
