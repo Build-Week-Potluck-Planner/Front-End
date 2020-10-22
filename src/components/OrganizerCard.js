@@ -6,23 +6,31 @@ import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
 import Typography from "@material-ui/core/Typography";
 import { authorization } from "../utils/AxiosWithAuth";
+import profileimg from "../assets/profileimg.jpg";
 
 const useStyles = makeStyles({
   root: {
-    maxWidth: 345,
+    maxWidth: 845,
   },
   media: {
     height: 340,
+  },
+  name: {
+    fontSize: 40,
+  },
+  username: {
+    fontSize: 20,
   },
 });
 
 export default function OrganizerCard() {
   const classes = useStyles();
   const [users, setUsersInfo] = useState([]);
+  const localId = localStorage.getItem("local_id");
 
   const getUsersInfo = () => {
     authorization()
-      .get("/users/20")
+      .get(`/users/${localId}`)
       .then((res) => {
         setUsersInfo(res.data);
         console.log(res.data);
@@ -39,14 +47,24 @@ export default function OrganizerCard() {
       <CardActionArea>
         <CardMedia
           className={classes.media}
-          image="https://cdn.vox-cdn.com/thumbor/qUrk7-iM8AAAPFwR4CoU--jwDhQ=/305x0:620x300/1200x800/filters:focal(416x93:514x191)/cdn.vox-cdn.com/uploads/chorus_image/image/54012879/twitter_eggandgumdrop.0.jpg"
+          image={profileimg}
           title="Organizer Profile Picture"
         />
         <CardContent>
-          <Typography gutterBottom variant="h5" component="h2">
+          <Typography
+            className={classes.name}
+            gutterBottom
+            variant="h5"
+            component="h2"
+          >
             Name:
           </Typography>
-          <Typography variant="body1" color="textSecondary" component="p">
+          <Typography
+            className={classes.username}
+            variant="body1"
+            color="textSecondary"
+            component="p"
+          >
             Username:
           </Typography>
           <Typography variant="body1" color="textSecondary" component="p">

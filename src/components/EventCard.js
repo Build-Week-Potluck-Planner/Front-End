@@ -10,6 +10,7 @@ import Typography from "@material-ui/core/Typography";
 import { newDate } from "../utils/newDate";
 import { authorization } from "../utils/AxiosWithAuth";
 import Organizer from "./Organizer";
+import foodimg from "../assets/foodimg.jpg";
 
 const useStyles = makeStyles({
   root: {
@@ -63,11 +64,7 @@ function EventCard({ props }) {
   return (
     <Card className={classes.root}>
       <CardActionArea>
-        <CardMedia
-          className={classes.media}
-          image="https://images.unsplash.com/photo-1498837167922-ddd27525d352?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80"
-          title="Potluck"
-        />
+        <CardMedia className={classes.media} image={foodimg} title="Potluck" />
         <CardContent className={classes.content}>
           <Typography
             className={classes.type1}
