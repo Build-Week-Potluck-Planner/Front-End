@@ -9,7 +9,10 @@ import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import { newDate } from "../utils/newDate";
 import { authorization } from "../utils/AxiosWithAuth";
+import Organizer from "./Organizer";
+import foodimg from "../assets/foodimg.jpg";
 import { useHistory } from "react-router-dom";
+
 
 const useStyles = makeStyles({
   root: {
@@ -68,11 +71,7 @@ function EventCard({ props, refreshList }) {
   return (
     <Card className={classes.root}>
       <CardActionArea>
-        <CardMedia
-          className={classes.media}
-          image="https://images.unsplash.com/photo-1498837167922-ddd27525d352?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80"
-          title="Contemplative Reptile"
-        />
+        <CardMedia className={classes.media} image={foodimg} title="Potluck" />
         <CardContent className={classes.content}>
           <Typography
             className={classes.type1}
@@ -84,7 +83,7 @@ function EventCard({ props, refreshList }) {
           </Typography>
           <Typography
             className={classes.type2}
-            variant="body2"
+            variant="body1"
             color="textSecondary"
             component="p"
           >
@@ -96,29 +95,25 @@ function EventCard({ props, refreshList }) {
           </Typography>
           <Typography
             className={classes.type3}
-            variant="body3"
+            variant="body1"
             color="textSecondary"
             component="p"
           >
-            <p>
-              Date: <span></span>
-              {date} <br></br>
-              Time: <span></span>
-              {props.time}
-            </p>
+            Date: <span></span>
+            {date} <br></br>
+            Time: <span></span>
+            {props.time}
           </Typography>
           <Typography
             className={classes.type4}
-            variant="body4"
+            variant="body1"
             color="textSecondary"
             component="p"
           >
-            <p>
-              Address : <span></span>
-              {props.address} <br></br>
-              {props.state} <></>
-              {props.city}
-            </p>
+            Address : <span></span>
+            {props.address} <br></br>
+            {props.state} <></>
+            {props.city}
           </Typography>
         </CardContent>
       </CardActionArea>
