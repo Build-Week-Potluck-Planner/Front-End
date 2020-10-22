@@ -3,7 +3,7 @@ import { Link, useHistory } from "react-router-dom";
 import EventCard from "../components/EventCard";
 import { UserCard } from "./UserCard";
 import { authorization } from "../utils/AxiosWithAuth";
-
+import OrganizerCard from "../components/OrganizerCard";
 // Component Pages
 import Organizer from "./Organizer";
 // import organizerCard
@@ -92,12 +92,16 @@ function Home() {
       <section>
         {potlucks.map((potluck) => (
           <div key={potluck.event_id}>
-            <EventCard props={potluck} users={users} />
+
+            <EventCard props={potluck} users={users} refreshList={getPotlucks} />
+
           </div>
         ))}
       </section>
       <section>
-        <div>{/* Invited to */}</div>
+        <div>
+          <OrganizerCard />{" "}
+        </div>
       </section>
     </div>
   );
