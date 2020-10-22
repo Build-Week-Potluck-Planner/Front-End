@@ -5,9 +5,9 @@ import axios from "axios";
 import { authorization } from "../utils/AxiosWithAuth";
 
 const schema = yup.object().shape({
-  username: yup.string().required('Username is Required'),
-  password: yup.string().required('Password is Required'),
-})
+  username: yup.string().required("Username is Required"),
+  password: yup.string().required("Password is Required"),
+});
 
 export default function Login() {
   const { push } = useHistory();
@@ -25,14 +25,16 @@ export default function Login() {
   });
 
   const setLoginDataErrors = (name, value) => {
-    yup.reach(schema, name).validate(value)
-    .then(() => setErrors({ ...errors, [name]: '' }))
-    .catch(err => setErrors({ ...errors, [name]: err.errors[0]}))
+    yup
+      .reach(schema, name)
+      .validate(value)
+      .then(() => setErrors({ ...errors, [name]: "" }))
+      .catch((err) => setErrors({ ...errors, [name]: err.errors[0] }));
   };
 
   const onChange = (event) => {
-    const { value, name } = event.target
-    setLoginDataErrors(name, value)
+    const { value, name } = event.target;
+    setLoginDataErrors(name, value);
     setLoginData({
       ...loginData,
       [event.target.name]: event.target.value,
@@ -46,26 +48,26 @@ export default function Login() {
       .then((result) => {
         console.log(result.data);
         localStorage.setItem("token", result.data.token);
+        localStorage.setItem("local_id", result.data.user_id);
         push("/Home");
       })
       .catch((error) => {
         console.log(error);
-        window.alert('Username or Password is Incorrect')
+        window.alert("Username or Password is Incorrect");
       });
   };
 
   useEffect(() => {
-    schema.isValid(loginData).then(valid => setDisabled(!valid))
+    schema.isValid(loginData).then((valid) => setDisabled(!valid));
   }, [loginData]);
 
   return (
     <div className="logIn inputs">
-
       <div style={{ color: "red" }}>
         <div>{errors.username}</div>
         <div>{errors.password}</div>
       </div>
-      
+
       <form onSubmit={onSubmit}>
         <label>
           Username

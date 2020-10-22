@@ -19,6 +19,7 @@ const DummyLogin = () => {
       .then((res) => {
         console.log(res.data);
         localStorage.setItem("token", res.data.token);
+        localStorage.setItem("local_id", res.data.user_id);
         push("/Home");
       })
       .catch((err) => {
