@@ -68,7 +68,6 @@ function Home() {
       <Organizer />
       {potlucks.map((potluck) => (
         <div key={potluck.event_id}>
-          {console.log(potluck.organizer_id, Number(localId))}
           {potluck.organizer_id === Number(localId) ? (
             <EventCard props={potluck} />
           ) : (
