@@ -80,7 +80,7 @@ function Home() {
       <section>
         {potlucks.map((potluck) => (
           <div key={potluck.event_id}>
-            <EventCard props={potluck} />
+            <EventCard props={potluck} refreshList={getPotlucks} />
           </div>
         ))}
       </section>
