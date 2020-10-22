@@ -2,12 +2,12 @@ import React from "react";
 import "./App.css";
 import Organizer from "./components/Organizer";
 import Private from "./utils/PrivateRoute";
-import { Route, Switch, Link, useHistory } from "react-router-dom";
-import Authorization from "./utils/AxiosWithAuth";
+import { Route, Link, useHistory } from "react-router-dom";
 
 import Signup from "./components/sign-up";
 import Home from "./components/Home";
 import Login from "./components/log-in";
+import Logout from "./components/Logout";
 import DummyLogin from "./components/DummyLogin";
 
 function App() {
@@ -34,6 +34,11 @@ function App() {
         {/* Create Signup Route */}
         <Route path="/signup">
           <Signup />
+        </Route>
+
+        {/* Logout */}
+        <Route path="/logout">
+          <Logout />
         </Route>
 
         {/* Create Potluck Route */}

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Route } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import EventCard from "../components/EventCard";
 import { UserCard } from "./UserCard";
 import { authorization } from "../utils/AxiosWithAuth";
@@ -11,6 +11,7 @@ import Organizer from "./Organizer";
 import { UserContext } from "../contexts/UserContext";
 
 function Home() {
+  const { push } = useHistory();
   // State variables
   const [editing, setEditing] = useState(false);
   const [potluckToEdit, setPotluckToEdit] = useState({});
@@ -53,49 +54,28 @@ function Home() {
   //     .catch((err) => console.log(err));
   // };
 
-  // Render List of Potlucks
-  // const PotluckList = () => {
-  //   const [list, setList] = useState([]);
-
-  //   useEffect(() => {
-  //     Authorization()
-  //       .get("/events")
-  //       .then((response) => {
-  //         console.log(response.data);
-  //         setList(response.data);
-  //       })
-  //       .catch((error) => console.log(error));
-  //   }, []);
-  //   return list;
-  // };
   return (
     <div className="Home">
+      <nav>
+        <Link to="/logout">
+          <button onClick={() => push("/logout")}>Logout</button>
+        </Link>
+      </nav>
       <h1>My Potlucks! </h1>
       <section>
         <Organizer />
-        <div>{/* CreatePotlucks */}</div>
       </section>
+      {/* All Potlucks */}
       <section>
-        <div>
-          {/* 
-        Current list of potlucks
-        Get /ev 
-        */}
-          {potlucks.map((potluck) => (
-            <div key={potluck.event_id}>
-              <EventCard props={potluck} />
-            </div>
-          ))}
-
-          {/* <PotluckList /> */}
-        </div>
+        {potlucks.map((potluck) => (
+          <div key={potluck.event_id}>
+            <EventCard props={potluck} />
+          </div>
+        ))}
       </section>
       <section>
         <div>{/* Invited to */}</div>
       </section>
-
-      <nav>{/* <logout></logout> */}</nav>
-      {/* <UserContext.Provider></UserContext.Provider> */}
     </div>
   );
 }
