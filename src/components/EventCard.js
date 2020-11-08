@@ -13,7 +13,6 @@ import Organizer from "./Organizer";
 import foodimg from "../assets/foodimg.jpg";
 import { useHistory } from "react-router-dom";
 
-
 const useStyles = makeStyles({
   root: {
     maxWidth: 345,
@@ -49,14 +48,14 @@ const useStyles = makeStyles({
   },
 });
 
-
 function EventCard({ props, users, refreshList }) {
   const classes = useStyles();
   const date = newDate(props.date);
-  const userFilter = users.filter((user)=>(user.user_id===props.organizer_id))
-  console.log(userFilter)
+  const userFilter = users.filter(
+    (user) => user.user_id === props.organizer_id
+  );
+  console.log("hello", users, userFilter);
   const { push } = useHistory();
-
 
   const deletePotluck = () => {
     const event_id = props.event_id;
@@ -91,7 +90,7 @@ function EventCard({ props, users, refreshList }) {
             Description: <span></span>
             {props.description} <br></br>
             Organizer Name: <span></span>
-            {userFilter ? userFilter[0].full_name : null}{" "}
+            {userFilter.length ? userFilter[0].full_name : null}{" "}
             {/* <OrganizerName name={props.guests.full_name} /> */}
           </Typography>
           <Typography
@@ -111,12 +110,10 @@ function EventCard({ props, users, refreshList }) {
             color="textSecondary"
             component="p"
           >
-
-              Address : <span></span>
-              {props.address} <br></br>
-              {props.city} <></> 
-              {props.state}
-              
+            Address : <span></span>
+            {props.address} <br></br>
+            {props.city} <></>
+            {props.state}
           </Typography>
         </CardContent>
       </CardActionArea>
