@@ -31,7 +31,7 @@ Functionality:
 
 Bugs:
 
-- **FIXED** For fetch users - some debugging required, user has to refresh page twice in order to load the home page
+- **FIXED** : For fetch users - some debugging required, user has to refresh page twice in order to load the home page
 
 Future Features:
 
