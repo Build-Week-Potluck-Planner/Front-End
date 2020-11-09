@@ -25,8 +25,8 @@ Functionality:
 - Create Potluck Event
 - Delete Potluck Event
 - Fetch potlucks from server separated by whether or not they were the organizer of the potluck event
-- Fetch users from server // some debugging required, user has to refresh page twice in order to load the home page
-- EventCard, UserCard(no functionality for UserCard at the moment)
+- Fetch users from server 
+- EventCard, UserCard (no functionality for UserCard at the moment)
 - Routes
 
 Bugs:
