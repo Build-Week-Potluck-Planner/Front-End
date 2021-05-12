@@ -15,7 +15,7 @@ const DummyLogin = () => {
   const submit = (e) => {
     e.preventDefault();
     authorization()
-      .post("https://potluck-planner-bw.herokuapp.com/users/login", user)
+      .post("https://potluck-planner--be.herokuapp.com/users/login", user)
       .then((res) => {
         console.log(res.data);
         localStorage.setItem("token", res.data.token);
