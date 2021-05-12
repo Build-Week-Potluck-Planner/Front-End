@@ -18,7 +18,7 @@ function Home() {
   const [editing, setEditing] = useState(false);
   const [potluckToEdit, setPotluckToEdit] = useState({});
   const [potlucks, setPotlucks] = useState([]);
-  const [users, setUsers ] = useState([])
+  const [users, setUsers] = useState([]);
 
   // Helper Functions
   const editPotluck = (potluck) => {
@@ -46,11 +46,10 @@ function Home() {
     authorization()
       .get("/users")
       .then((res) => {
-       setUsers(res.data);
+        setUsers(res.data);
         console.log(res.data);
       })
-      .catch((err) => 
-      console.log(err.response));
+      .catch((err) => console.log(err.response));
   };
 
   // useEffect(() => {
@@ -60,7 +59,7 @@ function Home() {
   //       setUsers(res.data);
   //       console.log(res.data);
   //     })
-  //     .catch((err) => 
+  //     .catch((err) =>
   //     console.log(err.response));
   // }, []);
 
@@ -76,7 +75,7 @@ function Home() {
   // const editPotluck = (e) => {
   //   e.preventDefault();
   //   axiosWithAuth()
-  //     .put(`http://backend-bw.herokuapp.com/potlucks/${potluck.id}`, potluck)
+  //     .put(`https://potluck-planner--be.herokuapp.com/potlucks/${potluck.id}`, potluck)
   //     .then((res) => getPotluck())
   //     .catch((err) => console.log(err));
   // };
@@ -103,9 +102,11 @@ function Home() {
       <section>
         {potlucks.map((potluck) => (
           <div key={potluck.event_id}>
-
-            <EventCard props={potluck} users={users} refreshList={getPotlucks} />
-
+            <EventCard
+              props={potluck}
+              users={users}
+              refreshList={getPotlucks}
+            />
           </div>
         ))}
       </section>
